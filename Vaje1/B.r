@@ -1,0 +1,25 @@
+v0 <- c("miza","stol","omara","okno")
+
+v0[4]<-"polica"
+v0
+
+v1 <- c(1,4,3,15,75)
+v1
+
+v2 <- c(5,6,0,sqrt(2),-4)
+v2
+
+v1 <- v1+3
+v1
+
+v2 <- v2*2
+v2
+
+vSestevek <- v1+v2
+vSestevek
+
+vSkalar <- sum(v1*v2)
+vSkalar
+
+vZdruzi <- c(v1,v2)
+vZdruzi
