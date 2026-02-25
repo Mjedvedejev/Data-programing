@@ -102,6 +102,8 @@ students[students$gpa > 3.5, c("name", "gpa", "major")]
 
 # Using %in% for multiple values
 students[students$major %in% c("CS", "Stats"), ]
+
+students[students$major == "CS" | students$major == "Stats", ]  # equivalent but more verbose
 ```
 
 ### 1.5 Conditional Replacement
@@ -269,6 +271,7 @@ for (i in seq_along(x)) {
 # Good: pre-allocate
 n <- 10
 result <- numeric(n)
+result
 for (i in 1:n) {
   result[i] <- i^2 + i
 }

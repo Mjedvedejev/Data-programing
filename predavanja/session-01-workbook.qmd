@@ -375,6 +375,7 @@ pops <- c(USA = 331, India = 1408, Brazil = 214, Japan = 125, Germany = 83)
 
 pops[pops == max(pops)]
 pops[pops > mean(pops)]
+summary(pops)
 sum(pops)
 ```
 :::
@@ -444,6 +445,7 @@ This is critical. Pay attention to the difference:
 
 ```{r}
 student$name           # returns the character string
+student[["name"]]    # also returns the character string
 student[["age"]]       # returns the number
 student["scores"]      # returns a LIST containing scores
 student[[3]]           # returns the vector of scores
