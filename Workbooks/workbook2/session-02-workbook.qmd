@@ -379,8 +379,8 @@ students[, c("name", "gpa", "gpa_category")]
 **Using `if` instead of `ifelse()` on a vector.**
 
 ```{r}
-scores <- c(85, 92, 67)
-if (scores > 80) "high" else "low"  # only checks first element!
+# scores <- c(85, 92, 67)
+# if (scores > 80) "high" else "low"  # This does not work because the condition lenght is > 1
 ```
 
 `if` looks at only the first element. Use `ifelse()` for element-wise checks:

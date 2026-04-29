@@ -16,8 +16,21 @@ today() |> wday(label=TRUE)
 v1<-c("13.1.2021","3.Jan.2011","4 March 14")
 parse_date_time(v1,orders=c("dmy","dbY","dBY"))
 
+# R
 
-"1.Feb.2020" |>dmy() %>% {today() -.}
+# Option 1 — keep %>%: load magrittr (or tidyverse) first
+# or ensure library(tidyverse) is called before this line
+age <- "1.Feb.2020" %>% dmy() %>% { today() - . }
+age  # returns the difference
+
+# Option 2 — use base pipe only (no magrittr needed)
+date <- "1.Feb.2020" |> dmy()
+age <- today() - date
+
+age  # returns the difference
+
+age <- "1.Feb.2020" |> dmy() %>% {today() -.}
+age
 
 ("1.1.2027" |> dmy() - "1.1.2026" |> dmy()) -> razlika
 razlika
