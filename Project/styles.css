@@ -1,0 +1,22 @@
+.quarto-title .subtitle {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.quarto-title-meta-heading {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #374151;
+}
+
+.quarto-title-meta-contents {
+  font-family: inherit;
+  font-style: normal;
+  color: #111827;
+}

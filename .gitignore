@@ -1,0 +1,11 @@
+# Dataset files
+*.csv
+*.ods
+*.zip
+
+# Extracted dataset directories
+Project/SalmonandSeaTroutNets1952-2022.csv/
+
+# Quarto generated support files
+*_files/
+*.knit.md
