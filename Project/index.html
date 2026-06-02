@@ -149,10 +149,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This project analyses catch statistics for salmon and sea trout in Scotland. The analysis focuses on two related questions. The first is the distinction between wild and farmed salmon, because the data separates <code>Wild MSW</code>, <code>Wild 1SW</code>, <code>Farmed MSW</code>, and <code>Farmed 1SW</code>. The second is the change in fishing practice: how many fish were retained as catch, and how many were caught and then released.</p>
 <p>The main research question is:</p>
 <blockquote class="blockquote">
-<p>Do the data show that Scottish salmon and sea trout fisheries have shifted from retained catch toward catch-and-release, while farmed salmon remain only a very small part of the recorded catch?</p>
+<p>Does the data show that Scottish salmon and sea trout fisheries have shifted from retained catch toward catch-and-release, while farmed salmon remain only a very small part of the recorded catch?</p>
 </blockquote>
 <p>The analysis uses two data sources. The first is a Kaggle <code>csv</code> dataset with monthly net-catch data for 1952-2022. The second is an official Scottish Government <code>ods</code> dataset for the 2024 season, which contains additional tables on retained catch, released catch, and the percentage released.</p>
-<p>An important limitation is that I do not infer causality where the data do not directly support it. When discussing decreases in catch, I distinguish between values calculated directly from the datasets and possible explanations from external sources.</p>
 </section>
 <section id="data-presentation" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data Presentation</h1>
@@ -248,7 +247,7 @@ $ `Netting effort`         &lt;dbl&gt; 4, 31, 10, 31, 21, 31, 28, 31, 29, 31, 27
 </section>
 <section id="geographical-and-reporting-context" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="geographical-and-reporting-context"><span class="header-section-number">2.3</span> Geographical and Reporting Context</h2>
-<p>Marine Scotland groups salmon and sea trout fishery statistics geographically into fishery districts and broader regions. Districts usually represent either one river catchment with adjacent coastline or a geographically coherent group of neighboring catchments and coastline. These districts are then aggregated into larger salmon fishery regions.</p>
+<p>According to the Scottish Government’s <a href="https://www.gov.scot/publications/collecting-marine-scotland-salmon-sea-trout-fishery-statistics-2/">Marine Scotland methodology note</a>, salmon and sea trout fishery statistics are grouped geographically into fishery districts and broader regions. Districts usually represent either one river catchment with adjacent coastline or a geographically coherent group of neighboring catchments and coastline. These districts are then aggregated into larger salmon fishery regions.</p>
 <p>The wider Marine Scotland statistical system uses 109 districts and 11 regions. The specific Kaggle <code>csv</code> net-catch dataset used in this project contains records for 97 districts and 10 regions, because districts with no reported net catch or effort do not appear as active records in this file. This matters because <code>District</code> and <code>Region</code> should be interpreted as official fishery reporting areas, not simply as ordinary administrative boundaries.</p>
 <p>The key columns in the <code>csv</code> dataset are:</p>
 <ul>
@@ -267,7 +266,7 @@ $ `Netting effort`         &lt;dbl&gt; 4, 31, 10, 31, 21, 31, 28, 31, 29, 31, 27
 <li><code>Net and Coble</code>: net fisheries generally operating in estuaries and the lower reaches of rivers, using a net and a small boat called a coble.</li>
 <li><code>Fixed Engine</code>: fixed netting equipment generally restricted to coastal areas outside estuary limits, with some regional exceptions such as haaf and poke nets in the Solway region.</li>
 </ul>
-<p>The attached Marine Scotland notes also clarify several data-collection limitations. Aggregate monthly data have been collected annually since 1952. Farmed-origin salmon have been reported since 1994, and released net-caught fish have only been collected since 2021. Finnock have been reported separately since 2004. The data are published as reported, with no correction for possible misclassification between one sea-winter salmon and multi sea-winter salmon.</p>
+<p>The same Scottish Government and Marine Scotland methodology material also clarifies several data-collection limitations. Aggregate monthly data have been collected annually since 1952. Farmed-origin salmon have been reported since 1994, and released net-caught fish have only been collected since 2021. Finnock have been reported separately since 2004. The data are published as reported, with no correction for possible misclassification between one sea-winter salmon and multi sea-winter salmon.</p>
 </section>
 <section id="dataset-2-official-ods-supplementary-tables" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="dataset-2-official-ods-supplementary-tables"><span class="header-section-number">2.4</span> Dataset 2: Official ODS Supplementary Tables</h2>
@@ -1003,11 +1002,11 @@ $ `Regional catch Percentage of Scottish catch` &lt;dbl&gt; 0, 0, 0, 0, 0, 23, 0
 <p>Explanation: in the <code>csv</code> dataset, total net catch decreased from 626,897 fish in 1969 to 478,073 fish in 1970, a drop of approximately 23.7%. The decrease is strongest for wild salmon, where the recorded catch fell from 510,189 to 346,207 fish. Sea trout and finnock do not show the same 1969-1970 drop in this <code>csv</code> subset, so I do not interpret this result as a uniform biological decline across all species.</p>
 <section id="possible-reasons-for-the-drop-around-1970" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="possible-reasons-for-the-drop-around-1970"><span class="header-section-number">4.4.1</span> Possible Reasons for the Drop Around 1970</h3>
-<p>This section is interpretive and is therefore separated from the direct calculations. The datasets do not prove the cause of the drop, but they suggest several possible directions for explanation:</p>
+<p>This section is interpretive and is therefore separated from the direct calculations. The datasets do not prove the cause of the drop, but they suggest several possible directions for explanation. The first two points are calculated from the project datasets, while the environmental context is credited to the external Queen’s University Belfast source listed in the references.</p>
 <ul>
-<li>Fishing effort in the <code>csv</code> dataset decreased from 13,149 in 1969 to 11,893 in 1970. Part of the drop may therefore be related to reduced fishing intensity, although the decrease in wild salmon catch is larger than the change in effort alone.</li>
-<li>The official ODS tables for salmon net fisheries also show a decrease in fixed engine and net and coble catches between 1969 and 1970, while rod-caught salmon did not decrease in the same year. This suggests that the drop is especially visible in net fisheries.</li>
-<li>An external source from Queen’s University Belfast describes south-west Scotland as having been strongly affected by freshwater acidification in the later twentieth century. It states that by the 1970s, brown trout populations had disappeared or declined sharply in some lakes. This is a plausible environmental context for pressure on salmonid populations, but it is not direct proof of the national salmon-catch pattern in this dataset.</li>
+<li>In the Kaggle <code>csv</code> dataset, fishing effort decreased from 13,149 in 1969 to 11,893 in 1970. Part of the drop may therefore be related to reduced fishing intensity, although the decrease in wild salmon catch is larger than the change in effort alone.</li>
+<li>In the official Scottish Government ODS supplementary tables, salmon net fisheries also show a decrease in fixed engine and net and coble catches between 1969 and 1970, while rod-caught salmon did not decrease in the same year. This suggests that the drop is especially visible in net fisheries.</li>
+<li>Queen’s University Belfast’s article <a href="https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html">Tracking the genes of brown-trout populations</a> describes south-west Scotland as having been strongly affected by freshwater acidification in the later twentieth century. It states that by the 1970s, brown trout populations had disappeared or declined sharply in some lakes. This is a plausible environmental context for pressure on salmonid populations, but it is not direct proof of the national salmon-catch pattern in this dataset.</li>
 </ul>
 </section>
 </section>
@@ -1066,7 +1065,7 @@ $ `Regional catch Percentage of Scottish catch` &lt;dbl&gt; 0, 0, 0, 0, 0, 23, 0
 <li>Kaggle dataset: <a href="https://www.kaggle.com/datasets/mikhail1681/salmon-catch-statistics-for-scotland-19522022" class="uri">https://www.kaggle.com/datasets/mikhail1681/salmon-catch-statistics-for-scotland-19522022</a></li>
 <li>Scottish Government, <code>Scottish salmon and sea trout fishery statistics 2024</code>, supporting documents: <a href="https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/documents/" class="uri">https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/documents/</a></li>
 <li>Scottish Government, <code>Scottish salmon and sea trout fishery statistics 2024</code>, publication summary: <a href="https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/" class="uri">https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/</a></li>
-<li>Marine Scotland explanatory notes supplied with the salmon and sea trout fishery statistics dataset.</li>
+<li>Scottish Government / Marine Scotland, <code>Collecting the Marine Scotland salmon and sea trout fishery statistics</code>: <a href="https://www.gov.scot/publications/collecting-marine-scotland-salmon-sea-trout-fishery-statistics-2/" class="uri">https://www.gov.scot/publications/collecting-marine-scotland-salmon-sea-trout-fishery-statistics-2/</a></li>
 <li>Queen’s University Belfast, <code>Tracking the genes of brown-trout populations</code>: <a href="https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html" class="uri">https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html</a></li>
 </ul>
 </section>

@@ -23,11 +23,9 @@ This project analyses catch statistics for salmon and sea trout in Scotland. The
 
 The main research question is:
 
-> Do the data show that Scottish salmon and sea trout fisheries have shifted from retained catch toward catch-and-release, while farmed salmon remain only a very small part of the recorded catch?
+> Does the data show that Scottish salmon and sea trout fisheries have shifted from retained catch toward catch-and-release, while farmed salmon remain only a very small part of the recorded catch?
 
 The analysis uses two data sources. The first is a Kaggle `csv` dataset with monthly net-catch data for 1952-2022. The second is an official Scottish Government `ods` dataset for the 2024 season, which contains additional tables on retained catch, released catch, and the percentage released.
-
-An important limitation is that I do not infer causality where the data do not directly support it. When discussing decreases in catch, I distinguish between values calculated directly from the datasets and possible explanations from external sources.
 
 # Data Presentation
 
@@ -82,7 +80,7 @@ glimpse(net_raw)
 
 ## Geographical and Reporting Context
 
-Marine Scotland groups salmon and sea trout fishery statistics geographically into fishery districts and broader regions. Districts usually represent either one river catchment with adjacent coastline or a geographically coherent group of neighboring catchments and coastline. These districts are then aggregated into larger salmon fishery regions.
+According to the Scottish Government's [Marine Scotland methodology note](https://www.gov.scot/publications/collecting-marine-scotland-salmon-sea-trout-fishery-statistics-2/), salmon and sea trout fishery statistics are grouped geographically into fishery districts and broader regions. Districts usually represent either one river catchment with adjacent coastline or a geographically coherent group of neighboring catchments and coastline. These districts are then aggregated into larger salmon fishery regions.
 
 The wider Marine Scotland statistical system uses 109 districts and 11 regions. The specific Kaggle `csv` net-catch dataset used in this project contains records for 97 districts and 10 regions, because districts with no reported net catch or effort do not appear as active records in this file. This matters because `District` and `Region` should be interpreted as official fishery reporting areas, not simply as ordinary administrative boundaries.
 
@@ -103,7 +101,7 @@ The main fishing-method terms used in the project are:
 - `Net and Coble`: net fisheries generally operating in estuaries and the lower reaches of rivers, using a net and a small boat called a coble.
 - `Fixed Engine`: fixed netting equipment generally restricted to coastal areas outside estuary limits, with some regional exceptions such as haaf and poke nets in the Solway region.
 
-The attached Marine Scotland notes also clarify several data-collection limitations. Aggregate monthly data have been collected annually since 1952. Farmed-origin salmon have been reported since 1994, and released net-caught fish have only been collected since 2021. Finnock have been reported separately since 2004. The data are published as reported, with no correction for possible misclassification between one sea-winter salmon and multi sea-winter salmon.
+The same Scottish Government and Marine Scotland methodology material also clarifies several data-collection limitations. Aggregate monthly data have been collected annually since 1952. Farmed-origin salmon have been reported since 1994, and released net-caught fish have only been collected since 2021. Finnock have been reported separately since 2004. The data are published as reported, with no correction for possible misclassification between one sea-winter salmon and multi sea-winter salmon.
 
 ## Dataset 2: Official ODS Supplementary Tables
 
@@ -401,11 +399,11 @@ Explanation: in the `csv` dataset, total net catch decreased from 626,897 fish i
 
 ### Possible Reasons for the Drop Around 1970
 
-This section is interpretive and is therefore separated from the direct calculations. The datasets do not prove the cause of the drop, but they suggest several possible directions for explanation:
+This section is interpretive and is therefore separated from the direct calculations. The datasets do not prove the cause of the drop, but they suggest several possible directions for explanation. The first two points are calculated from the project datasets, while the environmental context is credited to the external Queen's University Belfast source listed in the references.
 
-- Fishing effort in the `csv` dataset decreased from 13,149 in 1969 to 11,893 in 1970. Part of the drop may therefore be related to reduced fishing intensity, although the decrease in wild salmon catch is larger than the change in effort alone.
-- The official ODS tables for salmon net fisheries also show a decrease in fixed engine and net and coble catches between 1969 and 1970, while rod-caught salmon did not decrease in the same year. This suggests that the drop is especially visible in net fisheries.
-- An external source from Queen's University Belfast describes south-west Scotland as having been strongly affected by freshwater acidification in the later twentieth century. It states that by the 1970s, brown trout populations had disappeared or declined sharply in some lakes. This is a plausible environmental context for pressure on salmonid populations, but it is not direct proof of the national salmon-catch pattern in this dataset.
+- In the Kaggle `csv` dataset, fishing effort decreased from 13,149 in 1969 to 11,893 in 1970. Part of the drop may therefore be related to reduced fishing intensity, although the decrease in wild salmon catch is larger than the change in effort alone.
+- In the official Scottish Government ODS supplementary tables, salmon net fisheries also show a decrease in fixed engine and net and coble catches between 1969 and 1970, while rod-caught salmon did not decrease in the same year. This suggests that the drop is especially visible in net fisheries.
+- Queen's University Belfast's article [Tracking the genes of brown-trout populations](https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html) describes south-west Scotland as having been strongly affected by freshwater acidification in the later twentieth century. It states that by the 1970s, brown trout populations had disappeared or declined sharply in some lakes. This is a plausible environmental context for pressure on salmonid populations, but it is not direct proof of the national salmon-catch pattern in this dataset.
 
 ## Plot 5: Released Catch Can Fall in Absolute Terms When Total Catch Falls
 
@@ -458,5 +456,5 @@ The main limitation of this project is that the two datasets do not have the sam
 - Kaggle dataset: <https://www.kaggle.com/datasets/mikhail1681/salmon-catch-statistics-for-scotland-19522022>
 - Scottish Government, `Scottish salmon and sea trout fishery statistics 2024`, supporting documents: <https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/documents/>
 - Scottish Government, `Scottish salmon and sea trout fishery statistics 2024`, publication summary: <https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/>
-- Marine Scotland explanatory notes supplied with the salmon and sea trout fishery statistics dataset.
+- Scottish Government / Marine Scotland, `Collecting the Marine Scotland salmon and sea trout fishery statistics`: <https://www.gov.scot/publications/collecting-marine-scotland-salmon-sea-trout-fishery-statistics-2/>
 - Queen's University Belfast, `Tracking the genes of brown-trout populations`: <https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html>
