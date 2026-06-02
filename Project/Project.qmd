@@ -2,6 +2,7 @@
 title: "Analysis of Scottish Salmon and Sea Trout Catches"
 subtitle: "Wild versus farmed fish and the shift from retained catch to catch-and-release"
 author: "Tilen Tratnik | Student ID: 89221123 | RIN3"
+output-file: index.html
 format:
   html:
     toc: true

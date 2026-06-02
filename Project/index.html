@@ -1,13 +1,1481 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=Project.html">
-  <link rel="canonical" href="Project.html">
-  <title>Analysis of Scottish Salmon and Sea Trout Catches</title>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tilen Tratnik | Student ID: 89221123 | RIN3">
+
+<title>Analysis of Scottish Salmon and Sea Trout Catches</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Project_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Project_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Project_files/libs/quarto-html/popper.min.js"></script>
+<script src="Project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Project_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Project_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <p>Opening <a href="Project.html">Analysis of Scottish Salmon and Sea Trout Catches</a>.</p>
-</body>
-</html>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-problem-description" id="toc-introduction-problem-description" class="nav-link active" data-scroll-target="#introduction-problem-description"><span class="header-section-number">1</span> Introduction / Problem Description</a></li>
+  <li><a href="#data-presentation" id="toc-data-presentation" class="nav-link" data-scroll-target="#data-presentation"><span class="header-section-number">2</span> Data Presentation</a>
+  <ul class="collapse">
+  <li><a href="#importing-libraries-and-data" id="toc-importing-libraries-and-data" class="nav-link" data-scroll-target="#importing-libraries-and-data"><span class="header-section-number">2.1</span> Importing Libraries and Data</a></li>
+  <li><a href="#dataset-1-kaggle-csv" id="toc-dataset-1-kaggle-csv" class="nav-link" data-scroll-target="#dataset-1-kaggle-csv"><span class="header-section-number">2.2</span> Dataset 1: Kaggle CSV</a></li>
+  <li><a href="#geographical-and-reporting-context" id="toc-geographical-and-reporting-context" class="nav-link" data-scroll-target="#geographical-and-reporting-context"><span class="header-section-number">2.3</span> Geographical and Reporting Context</a></li>
+  <li><a href="#dataset-2-official-ods-supplementary-tables" id="toc-dataset-2-official-ods-supplementary-tables" class="nav-link" data-scroll-target="#dataset-2-official-ods-supplementary-tables"><span class="header-section-number">2.4</span> Dataset 2: Official ODS Supplementary Tables</a></li>
+  </ul></li>
+  <li><a href="#data-transformation" id="toc-data-transformation" class="nav-link" data-scroll-target="#data-transformation"><span class="header-section-number">3</span> Data Transformation</a>
+  <ul class="collapse">
+  <li><a href="#cleaning-and-preparing-the-csv-dataset" id="toc-cleaning-and-preparing-the-csv-dataset" class="nav-link" data-scroll-target="#cleaning-and-preparing-the-csv-dataset"><span class="header-section-number">3.1</span> Cleaning and Preparing the CSV Dataset</a></li>
+  <li><a href="#cleaning-and-preparing-the-ods-dataset" id="toc-cleaning-and-preparing-the-ods-dataset" class="nav-link" data-scroll-target="#cleaning-and-preparing-the-ods-dataset"><span class="header-section-number">3.2</span> Cleaning and Preparing the ODS Dataset</a></li>
+  <li><a href="#table-1-farmed-salmon-by-region-in-2024" id="toc-table-1-farmed-salmon-by-region-in-2024" class="nav-link" data-scroll-target="#table-1-farmed-salmon-by-region-in-2024"><span class="header-section-number">3.3</span> Table 1: Farmed Salmon by Region in 2024</a></li>
+  <li><a href="#table-2-comparing-retained-and-released-catch-in-2024" id="toc-table-2-comparing-retained-and-released-catch-in-2024" class="nav-link" data-scroll-target="#table-2-comparing-retained-and-released-catch-in-2024"><span class="header-section-number">3.4</span> Table 2: Comparing Retained and Released Catch in 2024</a></li>
+  <li><a href="#table-3-joining-the-csv-and-ods-datasets" id="toc-table-3-joining-the-csv-and-ods-datasets" class="nav-link" data-scroll-target="#table-3-joining-the-csv-and-ods-datasets"><span class="header-section-number">3.5</span> Table 3: Joining the CSV and ODS Datasets</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis"><span class="header-section-number">4</span> Exploratory Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#plot-1-wild-and-farmed-salmon-in-net-catches" id="toc-plot-1-wild-and-farmed-salmon-in-net-catches" class="nav-link" data-scroll-target="#plot-1-wild-and-farmed-salmon-in-net-catches"><span class="header-section-number">4.1</span> Plot 1: Wild and Farmed Salmon in Net Catches</a></li>
+  <li><a href="#plot-2-catch-and-release-percentage-in-rod-fisheries" id="toc-plot-2-catch-and-release-percentage-in-rod-fisheries" class="nav-link" data-scroll-target="#plot-2-catch-and-release-percentage-in-rod-fisheries"><span class="header-section-number">4.2</span> Plot 2: Catch-and-Release Percentage in Rod Fisheries</a></li>
+  <li><a href="#plot-3-retained-versus-released-catch-by-method-in-2024" id="toc-plot-3-retained-versus-released-catch-by-method-in-2024" class="nav-link" data-scroll-target="#plot-3-retained-versus-released-catch-by-method-in-2024"><span class="header-section-number">4.3</span> Plot 3: Retained versus Released Catch by Method in 2024</a></li>
+  <li><a href="#plot-4-the-drop-in-net-catch-around-1970" id="toc-plot-4-the-drop-in-net-catch-around-1970" class="nav-link" data-scroll-target="#plot-4-the-drop-in-net-catch-around-1970"><span class="header-section-number">4.4</span> Plot 4: The Drop in Net Catch Around 1970</a>
+  <ul class="collapse">
+  <li><a href="#possible-reasons-for-the-drop-around-1970" id="toc-possible-reasons-for-the-drop-around-1970" class="nav-link" data-scroll-target="#possible-reasons-for-the-drop-around-1970"><span class="header-section-number">4.4.1</span> Possible Reasons for the Drop Around 1970</a></li>
+  </ul></li>
+  <li><a href="#plot-5-released-catch-can-fall-in-absolute-terms-when-total-catch-falls" id="toc-plot-5-released-catch-can-fall-in-absolute-terms-when-total-catch-falls" class="nav-link" data-scroll-target="#plot-5-released-catch-can-fall-in-absolute-terms-when-total-catch-falls"><span class="header-section-number">4.5</span> Plot 5: Released Catch Can Fall in Absolute Terms When Total Catch Falls</a></li>
+  </ul></li>
+  <li><a href="#interpretation-conclusion" id="toc-interpretation-conclusion" class="nav-link" data-scroll-target="#interpretation-conclusion"><span class="header-section-number">5</span> Interpretation / Conclusion</a></li>
+  <li><a href="#literature-references" id="toc-literature-references" class="nav-link" data-scroll-target="#literature-references"><span class="header-section-number">6</span> Literature / References</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analysis of Scottish Salmon and Sea Trout Catches</h1>
+<p class="subtitle lead">Wild versus farmed fish and the shift from retained catch to catch-and-release</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tilen Tratnik | Student ID: 89221123 | RIN3 </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-problem-description" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction / Problem Description</h1>
+<p>This project analyses catch statistics for salmon and sea trout in Scotland. The analysis focuses on two related questions. The first is the distinction between wild and farmed salmon, because the data separates <code>Wild MSW</code>, <code>Wild 1SW</code>, <code>Farmed MSW</code>, and <code>Farmed 1SW</code>. The second is the change in fishing practice: how many fish were retained as catch, and how many were caught and then released.</p>
+<p>The main research question is:</p>
+<blockquote class="blockquote">
+<p>Do the data show that Scottish salmon and sea trout fisheries have shifted from retained catch toward catch-and-release, while farmed salmon remain only a very small part of the recorded catch?</p>
+</blockquote>
+<p>The analysis uses two data sources. The first is a Kaggle <code>csv</code> dataset with monthly net-catch data for 1952-2022. The second is an official Scottish Government <code>ods</code> dataset for the 2024 season, which contains additional tables on retained catch, released catch, and the percentage released.</p>
+<p>An important limitation is that I do not infer causality where the data do not directly support it. When discussing decreases in catch, I distinguish between values calculated directly from the datasets and possible explanations from external sources.</p>
+</section>
+<section id="data-presentation" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data Presentation</h1>
+<section id="importing-libraries-and-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="importing-libraries-and-data"><span class="header-section-number">2.1</span> Importing Libraries and Data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readODS)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>csv_path <span class="ot">&lt;-</span> <span class="st">"datasets/SalmonandSeaTroutNets1952-2022.csv"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ods_path <span class="ot">&lt;-</span> <span class="st">"datasets/2024-scottish-salmon-sea-trout-statistics-supplementary-tables.ods"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>net_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(csv_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>is_blank <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(x) <span class="sc">|</span> <span class="fu">str_trim</span>(<span class="fu">as.character</span>(x)) <span class="sc">==</span> <span class="st">""</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>read_ods_table <span class="ot">&lt;-</span> <span class="cf">function</span>(sheet, skip) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_ods</span>(ods_path, <span class="at">sheet =</span> sheet, <span class="at">skip =</span> skip, <span class="at">col_names =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_with</span>(str_squish) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">where</span>(<span class="sc">~</span> <span class="sc">!</span><span class="fu">all</span>(<span class="fu">is_blank</span>(.x)))) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_all</span>(<span class="fu">everything</span>(), is_blank))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>to_number <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  x_chr <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  x_chr[<span class="fu">str_detect</span>(x_chr, <span class="st">"^</span><span class="sc">\\</span><span class="st">[note"</span>)] <span class="ot">&lt;-</span> <span class="cn">NA_character_</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parse_number</span>(x_chr, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">grouping_mark =</span> <span class="st">","</span>))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>salmon_rod_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_1"</span>, <span class="at">skip =</span> <span class="dv">2</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>salmon_net_2024_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_2"</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>salmon_all_2024_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_5"</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>farmed_2024_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_6"</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>trout_rod_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_7"</span>, <span class="at">skip =</span> <span class="dv">2</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>trout_net_2024_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_8"</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>trout_all_2024_raw <span class="ot">&lt;-</span> <span class="fu">read_ods_table</span>(<span class="st">"Table_11"</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dataset-1-kaggle-csv" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dataset-1-kaggle-csv"><span class="header-section-number">2.2</span> Dataset 1: Kaggle CSV</h2>
+<p>The first dataset contains monthly net-catch records for salmon and sea trout from 1952 to 2022. Each row is a combination of district, region, fishing method, year, and month.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(net_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 21
+  District `District ID` `Report order` Region Method  Year Month `Month number`
+  &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
+1 Tweed              101              1 East   Fixed…  1952 Febr…              2
+2 Tweed              101              1 East   Net a…  1952 Febr…              2
+3 Tweed              101              1 East   Fixed…  1952 March              3
+4 Tweed              101              1 East   Net a…  1952 March              3
+5 Tweed              101              1 East   Fixed…  1952 April              4
+6 Tweed              101              1 East   Net a…  1952 April              4
+# ℹ 13 more variables: `Wild MSW number` &lt;dbl&gt;, `Wild MSW weight (kg)` &lt;dbl&gt;,
+#   `Wild 1SW number` &lt;dbl&gt;, `Wild 1SW weight (kg)` &lt;dbl&gt;,
+#   `Sea trout number` &lt;dbl&gt;, `Sea trout weight (kg)` &lt;dbl&gt;,
+#   `Finnock number` &lt;dbl&gt;, `Finnock weight (kg)` &lt;dbl&gt;,
+#   `Farmed MSW number` &lt;dbl&gt;, `Farmed MSW weight (kg)` &lt;dbl&gt;,
+#   `Farmed 1SW number` &lt;dbl&gt;, `Farmed 1SW weight (kg)` &lt;dbl&gt;,
+#   `Netting effort` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(net_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 23,143
+Columns: 21
+$ District                 &lt;chr&gt; "Tweed", "Tweed", "Tweed", "Tweed", "Tweed", …
+$ `District ID`            &lt;dbl&gt; 101, 101, 101, 101, 101, 101, 101, 101, 101, …
+$ `Report order`           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ Region                   &lt;chr&gt; "East", "East", "East", "East", "East", "East…
+$ Method                   &lt;chr&gt; "Fixed Engine: Retained", "Net and Coble: Ret…
+$ Year                     &lt;dbl&gt; 1952, 1952, 1952, 1952, 1952, 1952, 1952, 195…
+$ Month                    &lt;chr&gt; "February", "February", "March", "March", "Ap…
+$ `Month number`           &lt;dbl&gt; 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, …
+$ `Wild MSW number`        &lt;dbl&gt; 107, 6606, 185, 7008, 484, 4253, 754, 2370, 4…
+$ `Wild MSW weight (kg)`   &lt;dbl&gt; 400.5, 24856.9, 703.1, 26151.9, 1912.3, 16522…
+$ `Wild 1SW number`        &lt;dbl&gt; 0, 0, 0, 1, 0, 4, 19, 44, 242, 1507, 1267, 60…
+$ `Wild 1SW weight (kg)`   &lt;dbl&gt; 0.0, 0.0, 0.0, 0.5, 0.0, 5.4, 23.1, 49.9, 427…
+$ `Sea trout number`       &lt;dbl&gt; 0, 453, 13, 848, 14, 1244, 60, 2689, 80, 7286…
+$ `Sea trout weight (kg)`  &lt;dbl&gt; 0.0, 705.8, 21.3, 1172.5, 20.0, 1413.4, 104.3…
+$ `Finnock number`         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Finnock weight (kg)`    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Farmed MSW number`      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Farmed MSW weight (kg)` &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Farmed 1SW number`      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Farmed 1SW weight (kg)` &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ `Netting effort`         &lt;dbl&gt; 4, 31, 10, 31, 21, 31, 28, 31, 29, 31, 27, 33…</code></pre>
+</div>
+</div>
+</section>
+<section id="geographical-and-reporting-context" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="geographical-and-reporting-context"><span class="header-section-number">2.3</span> Geographical and Reporting Context</h2>
+<p>Marine Scotland groups salmon and sea trout fishery statistics geographically into fishery districts and broader regions. Districts usually represent either one river catchment with adjacent coastline or a geographically coherent group of neighboring catchments and coastline. These districts are then aggregated into larger salmon fishery regions.</p>
+<p>The wider Marine Scotland statistical system uses 109 districts and 11 regions. The specific Kaggle <code>csv</code> net-catch dataset used in this project contains records for 97 districts and 10 regions, because districts with no reported net catch or effort do not appear as active records in this file. This matters because <code>District</code> and <code>Region</code> should be interpreted as official fishery reporting areas, not simply as ordinary administrative boundaries.</p>
+<p>The key columns in the <code>csv</code> dataset are:</p>
+<ul>
+<li><code>District</code>, <code>District ID</code>, and <code>Region</code>: spatial identifiers for the catch.</li>
+<li><code>Method</code>: the fishing method, for example <code>Fixed Engine: Retained</code> or <code>Net and Coble: Retained</code>.</li>
+<li><code>Year</code>, <code>Month</code>, and <code>Month number</code>: time variables.</li>
+<li><code>Wild MSW number</code> and <code>Wild 1SW number</code>: counts of wild salmon.</li>
+<li><code>Farmed MSW number</code> and <code>Farmed 1SW number</code>: counts of farmed salmon.</li>
+<li><code>Sea trout number</code> and <code>Finnock number</code>: counts of sea trout and finnock.</li>
+<li>Columns ending in <code>(kg)</code>: catch weight in kilograms.</li>
+<li><code>Netting effort</code>: fishing effort, which is useful when interpreting changes in catch.</li>
+</ul>
+<p>The main fishing-method terms used in the project are:</p>
+<ul>
+<li><code>Rod</code>: recreational angling with a rod and line, generally taking place within rivers.</li>
+<li><code>Net and Coble</code>: net fisheries generally operating in estuaries and the lower reaches of rivers, using a net and a small boat called a coble.</li>
+<li><code>Fixed Engine</code>: fixed netting equipment generally restricted to coastal areas outside estuary limits, with some regional exceptions such as haaf and poke nets in the Solway region.</li>
+</ul>
+<p>The attached Marine Scotland notes also clarify several data-collection limitations. Aggregate monthly data have been collected annually since 1952. Farmed-origin salmon have been reported since 1994, and released net-caught fish have only been collected since 2021. Finnock have been reported separately since 2004. The data are published as reported, with no correction for possible misclassification between one sea-winter salmon and multi sea-winter salmon.</p>
+</section>
+<section id="dataset-2-official-ods-supplementary-tables" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="dataset-2-official-ods-supplementary-tables"><span class="header-section-number">2.4</span> Dataset 2: Official ODS Supplementary Tables</h2>
+<p>The second dataset is the official Scottish Government supplementary spreadsheet for the 2024 season. It contains several worksheets, including:</p>
+<ul>
+<li><code>Table_1</code>: a time series of rod-caught wild salmon, including released catch and percentage released.</li>
+<li><code>Table_2</code>: 2024 net catch of wild salmon by method.</li>
+<li><code>Table_5</code>: 2024 salmon catch across all methods, split into retained and released catch.</li>
+<li><code>Table_6</code>: 2024 farmed salmon catch by region.</li>
+<li><code>Table_7</code>: a time series of rod-caught sea trout and finnock.</li>
+<li><code>Table_8</code>: 2024 net catch of sea trout and finnock by method.</li>
+<li><code>Table_11</code>: 2024 sea trout catch across all methods.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(salmon_rod_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 19
+   Year `Total catch` `Released catch` `Percentage of total catch released`
+  &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                               
+1  1952         41097 [note 1]         [note 1]                            
+2  1953         50103 [note 1]         [note 1]                            
+3  1954         59161 [note 1]         [note 1]                            
+4  1955         50639 [note 1]         [note 1]                            
+5  1956         56149 [note 1]         [note 1]                            
+6  1957         74106 [note 1]         [note 1]                            
+# ℹ 15 more variables: `Spring MSW total catch` &lt;dbl&gt;,
+#   `Spring MSW released catch` &lt;chr&gt;,
+#   `Percentage of spring MSW released` &lt;chr&gt;,
+#   `Summer/Autumn MSW total catch` &lt;dbl&gt;,
+#   `Summer/Autumn MSW released catch` &lt;chr&gt;,
+#   `Percentage of Summer/Autumn MSW released catch` &lt;chr&gt;,
+#   `1SW total catch` &lt;dbl&gt;, `1SW released catch` &lt;chr&gt;, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(farmed_2024_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  Region      `Total catch` `Regional catch Percentage of Scottish catch`
+  &lt;chr&gt;               &lt;dbl&gt;                                         &lt;dbl&gt;
+1 Clyde Coast             0                                             0
+2 East                    0                                             0
+3 Moray Firth             0                                             0
+4 North                   0                                             0
+5 North East              0                                             0
+6 North West              3                                            23</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(salmon_rod_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 73
+Columns: 19
+$ Year                                             &lt;dbl&gt; 1952, 1953, 1954, 195…
+$ `Total catch`                                    &lt;dbl&gt; 41097, 50103, 59161, …
+$ `Released catch`                                 &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Percentage of total catch released`             &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Spring MSW total catch`                         &lt;dbl&gt; 12483, 16219, 19860, …
+$ `Spring MSW released catch`                      &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Percentage of spring MSW released`              &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Summer/Autumn MSW total catch`                  &lt;dbl&gt; 22481, 27501, 34429, …
+$ `Summer/Autumn MSW released catch`               &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Percentage of Summer/Autumn MSW released catch` &lt;chr&gt; "[note 1]", "[note 1]…
+$ `1SW total catch`                                &lt;dbl&gt; 6133, 6383, 4872, 414…
+$ `1SW released catch`                             &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Percentage of 1SW catch released`               &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Summer/Autumn MSW + 1SW total catch`            &lt;dbl&gt; 28614, 33884, 39301, …
+$ `Summer/Autumn MSW + 1SW released catch`         &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Percentage of Summer/Autumn MSW + 1SW released` &lt;chr&gt; "[note 1]", "[note 1]…
+$ `Rod effort (days)`                              &lt;chr&gt; "[note 5]", "[note 5]…
+$ `Percentage of rod forms returned with effort`   &lt;chr&gt; "[note 5]", "[note 5]…
+$ `Percentage of total catch reported with effort` &lt;chr&gt; "[note 5]", "[note 5]…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(farmed_2024_raw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 11
+Columns: 3
+$ Region                                        &lt;chr&gt; "Clyde Coast", "East", "…
+$ `Total catch`                                 &lt;dbl&gt; 0, 0, 0, 0, 0, 3, 0, 0, …
+$ `Regional catch Percentage of Scottish catch` &lt;dbl&gt; 0, 0, 0, 0, 0, 23, 0, 0,…</code></pre>
+</div>
+</div>
+<p>Some older released-catch values in this source are recorded as notes, such as <code>[note 1]</code> or <code>[note 3]</code>, rather than as numbers. During cleaning, these entries are converted to <code>NA</code> because they are not numeric values. This is important because catch-and-release values for rod fisheries become comparable from 1994 onward, while released net-caught fish are only available in the official tables from 2021 onward.</p>
+</section>
+</section>
+<section id="data-transformation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Transformation</h1>
+<section id="cleaning-and-preparing-the-csv-dataset" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="cleaning-and-preparing-the-csv-dataset"><span class="header-section-number">3.1</span> Cleaning and Preparing the CSV Dataset</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>net_clean <span class="ot">&lt;-</span> net_raw <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">wild_salmon_number =</span> <span class="st">`</span><span class="at">Wild MSW number</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Wild 1SW number</span><span class="st">`</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">farmed_salmon_number =</span> <span class="st">`</span><span class="at">Farmed MSW number</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Farmed 1SW number</span><span class="st">`</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">salmon_number =</span> wild_salmon_number <span class="sc">+</span> farmed_salmon_number,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">trout_number =</span> <span class="st">`</span><span class="at">Sea trout number</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Finnock number</span><span class="st">`</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_fish_number =</span> salmon_number <span class="sc">+</span> trout_number,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">wild_salmon_weight_kg =</span> <span class="st">`</span><span class="at">Wild MSW weight (kg)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Wild 1SW weight (kg)</span><span class="st">`</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">farmed_salmon_weight_kg =</span> <span class="st">`</span><span class="at">Farmed MSW weight (kg)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Farmed 1SW weight (kg)</span><span class="st">`</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">salmon_weight_kg =</span> wild_salmon_weight_kg <span class="sc">+</span> farmed_salmon_weight_kg,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">trout_weight_kg =</span> <span class="st">`</span><span class="at">Sea trout weight (kg)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Finnock weight (kg)</span><span class="st">`</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_fish_weight_kg =</span> salmon_weight_kg <span class="sc">+</span> trout_weight_kg</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>net_year <span class="ot">&lt;-</span> net_clean <span class="sc">|&gt;</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">|&gt;</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">wild_salmon_number =</span> <span class="fu">sum</span>(wild_salmon_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">farmed_salmon_number =</span> <span class="fu">sum</span>(farmed_salmon_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">trout_number =</span> <span class="fu">sum</span>(trout_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_fish_number =</span> <span class="fu">sum</span>(all_fish_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">netting_effort =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Netting effort</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">farmed_share_salmon =</span> <span class="fu">if_else</span>(</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      wild_salmon_number <span class="sc">+</span> farmed_salmon_number <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>      farmed_salmon_number <span class="sc">/</span> (wild_salmon_number <span class="sc">+</span> farmed_salmon_number),</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA_real_</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>net_year <span class="sc">|&gt;</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1952</span>, <span class="dv">1969</span>, <span class="dv">1970</span>, <span class="dv">1994</span>, <span class="dv">2010</span>, <span class="dv">2022</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">wild_salmon_number</th>
+<th style="text-align: right;">farmed_salmon_number</th>
+<th style="text-align: right;">trout_number</th>
+<th style="text-align: right;">all_fish_number</th>
+<th style="text-align: right;">netting_effort</th>
+<th style="text-align: right;">farmed_share_salmon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1952</td>
+<td style="text-align: right;">344118</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">111544</td>
+<td style="text-align: right;">455662</td>
+<td style="text-align: right;">18735.0</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1969</td>
+<td style="text-align: right;">510189</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">116708</td>
+<td style="text-align: right;">626897</td>
+<td style="text-align: right;">13149.0</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1970</td>
+<td style="text-align: right;">346207</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">131866</td>
+<td style="text-align: right;">478073</td>
+<td style="text-align: right;">11893.0</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">106735</td>
+<td style="text-align: right;">1069</td>
+<td style="text-align: right;">27326</td>
+<td style="text-align: right;">135130</td>
+<td style="text-align: right;">1864.5</td>
+<td style="text-align: right;">0.0099161</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">27315</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">11035</td>
+<td style="text-align: right;">38421</td>
+<td style="text-align: right;">953.5</td>
+<td style="text-align: right;">0.0025926</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">1022</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1274</td>
+<td style="text-align: right;">2296</td>
+<td style="text-align: right;">98.0</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Explanation: this table aggregates the monthly and regional records into annual totals. This makes it possible to compare wild and farmed salmon over time. In this <code>csv</code> dataset, farmed salmon are extremely rare: across the entire 1952-2022 net-catch dataset, there are 13,450,631 wild salmon and 4,795 farmed salmon, so farmed salmon account for approximately 0.036% of all recorded salmon in this source.</p>
+</section>
+<section id="cleaning-and-preparing-the-ods-dataset" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="cleaning-and-preparing-the-ods-dataset"><span class="header-section-number">3.2</span> Cleaning and Preparing the ODS Dataset</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>salmon_rod <span class="ot">&lt;-</span> salmon_rod_raw <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">to_number</span>(Year),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="st">"Wild salmon"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fishery =</span> <span class="st">"Rod"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Total catch</span><span class="st">`</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">released_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Released catch</span><span class="st">`</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_released =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Percentage of total catch released</span><span class="st">`</span>),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">retained_catch =</span> total_catch <span class="sc">-</span> released_catch</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>trout_rod <span class="ot">&lt;-</span> trout_rod_raw <span class="sc">|&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">to_number</span>(Year),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="st">"Sea trout"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fishery =</span> <span class="st">"Rod"</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Sea Trout Total catch</span><span class="st">`</span>),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">released_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Sea trout Released catch</span><span class="st">`</span>),</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_released =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Sea trout Percentage of catch released</span><span class="st">`</span>),</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">retained_catch =</span> total_catch <span class="sc">-</span> released_catch</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>catch_release_rod <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(salmon_rod, trout_rod) <span class="sc">|&gt;</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(released_catch))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>salmon_all_2024 <span class="ot">&lt;-</span> salmon_all_2024_raw <span class="sc">|&gt;</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="st">"Wild salmon"</span>,</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    Method,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Total catch</span><span class="st">`</span>),</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">retained_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Retained catch</span><span class="st">`</span>),</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">released_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Released catch</span><span class="st">`</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>trout_all_2024 <span class="ot">&lt;-</span> trout_all_2024_raw <span class="sc">|&gt;</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="st">"Sea trout"</span>,</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    Method,</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Total catch</span><span class="st">`</span>),</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">retained_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Retained catch</span><span class="st">`</span>),</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">released_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Released catch</span><span class="st">`</span>)</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>farmed_2024 <span class="ot">&lt;-</span> farmed_2024_raw <span class="sc">|&gt;</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>    Region,</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">farmed_total_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Total catch</span><span class="st">`</span>),</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_of_scottish_farmed_catch =</span> <span class="fu">to_number</span>(<span class="st">`</span><span class="at">Regional catch Percentage of Scottish catch</span><span class="st">`</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>catch_release_rod <span class="sc">|&gt;</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1994</span>, <span class="dv">2010</span>, <span class="dv">2023</span>, <span class="dv">2024</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species, Year) <span class="sc">|&gt;</span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">fishery</th>
+<th style="text-align: right;">total_catch</th>
+<th style="text-align: right;">released_catch</th>
+<th style="text-align: right;">percent_released</th>
+<th style="text-align: right;">retained_catch</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">32379</td>
+<td style="text-align: right;">2744</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">29635</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2010</td>
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">27008</td>
+<td style="text-align: right;">19246</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">7762</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2023</td>
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">15802</td>
+<td style="text-align: right;">14106</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">1696</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2024</td>
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">13876</td>
+<td style="text-align: right;">13080</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">796</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">83585</td>
+<td style="text-align: right;">6595</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">76990</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2010</td>
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">111405</td>
+<td style="text-align: right;">78459</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">32946</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2023</td>
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">33084</td>
+<td style="text-align: right;">31885</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">1199</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2024</td>
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">46978</td>
+<td style="text-align: right;">45872</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">1106</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Explanation: for the ODS data, I create a consistent structure with <code>total_catch</code>, <code>retained_catch</code>, <code>released_catch</code>, and <code>percent_released</code>. Entries recorded as notes are converted to missing values, so they are not used in comparisons that require numeric released-catch values.</p>
+</section>
+<section id="table-1-farmed-salmon-by-region-in-2024" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="table-1-farmed-salmon-by-region-in-2024"><span class="header-section-number">3.3</span> Table 1: Farmed Salmon by Region in 2024</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>farmed_2024 <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(farmed_total_catch)) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Region</th>
+<th style="text-align: right;">farmed_total_catch</th>
+<th style="text-align: right;">percent_of_scottish_farmed_catch</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Scotland</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">West Coast</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North West</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Solway</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clyde Coast</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">East</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Moray Firth</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">North</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">North East</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outer Hebrides</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shetland</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Explanation: in 2024, the official ODS table recorded 13 farmed salmon. The largest number was in the West Coast region, where the table lists 7 fish, or 54% of Scotland’s farmed salmon catch. This does not mean that most fish caught in the West Coast region were farmed; it only describes the regional distribution within a very small number of farmed salmon.</p>
+</section>
+<section id="table-2-comparing-retained-and-released-catch-in-2024" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="table-2-comparing-retained-and-released-catch-in-2024"><span class="header-section-number">3.4</span> Table 2: Comparing Retained and Released Catch in 2024</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>catch_2024 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(salmon_all_2024, trout_all_2024) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Method <span class="sc">!=</span> <span class="st">"Total for all methods"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_released =</span> released_catch <span class="sc">/</span> total_catch</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>catch_2024 <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species, <span class="fu">desc</span>(total_catch)) <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">species</th>
+<th style="text-align: left;">Method</th>
+<th style="text-align: right;">total_catch</th>
+<th style="text-align: right;">retained_catch</th>
+<th style="text-align: right;">released_catch</th>
+<th style="text-align: right;">percent_released</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">13876</td>
+<td style="text-align: right;">796</td>
+<td style="text-align: right;">13080</td>
+<td style="text-align: right;">0.9426348</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Net and Coble</td>
+<td style="text-align: right;">390</td>
+<td style="text-align: right;">328</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">0.1589744</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sea trout</td>
+<td style="text-align: left;">Fixed Engine</td>
+<td style="text-align: right;">188</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0265957</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Rod</td>
+<td style="text-align: right;">46978</td>
+<td style="text-align: right;">1106</td>
+<td style="text-align: right;">45872</td>
+<td style="text-align: right;">0.9764571</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Net and Coble</td>
+<td style="text-align: right;">562</td>
+<td style="text-align: right;">393</td>
+<td style="text-align: right;">169</td>
+<td style="text-align: right;">0.3007117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wild salmon</td>
+<td style="text-align: left;">Fixed Engine</td>
+<td style="text-align: right;">373</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">364</td>
+<td style="text-align: right;">0.9758713</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Explanation: this table shows that rod fisheries are the main source of catch-and-release records in the 2024 data. For salmon, the rod catch was 46,978 fish, of which 45,872 were released and 1,106 were retained. For sea trout, the rod catch was 13,876 fish, of which 13,080 were released and 796 were retained.</p>
+</section>
+<section id="table-3-joining-the-csv-and-ods-datasets" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="table-3-joining-the-csv-and-ods-datasets"><span class="header-section-number">3.5</span> Table 3: Joining the CSV and ODS Datasets</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>joined_years <span class="ot">&lt;-</span> net_year <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, <span class="at">net_wild_salmon =</span> wild_salmon_number, <span class="at">net_farmed_salmon =</span> farmed_salmon_number) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    salmon_rod <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(Year, <span class="at">rod_wild_salmon_total =</span> total_catch, <span class="at">rod_wild_salmon_released =</span> released_catch),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"Year"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>joined_years <span class="sc">|&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1994</span>, <span class="dv">2010</span>, <span class="dv">2022</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">net_wild_salmon</th>
+<th style="text-align: right;">net_farmed_salmon</th>
+<th style="text-align: right;">rod_wild_salmon_total</th>
+<th style="text-align: right;">rod_wild_salmon_released</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">106735</td>
+<td style="text-align: right;">1069</td>
+<td style="text-align: right;">83585</td>
+<td style="text-align: right;">6595</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">27315</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">111405</td>
+<td style="text-align: right;">78459</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">1022</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">43086</td>
+<td style="text-align: right;">41560</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Explanation: the <code>inner_join()</code> links annual net-catch data from the <code>csv</code> dataset with rod-catch data from the official <code>ods</code> dataset. This allows the same table to compare net-caught wild and farmed salmon with rod-caught wild salmon.</p>
+</section>
+</section>
+<section id="exploratory-data-analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Exploratory Data Analysis</h1>
+<section id="plot-1-wild-and-farmed-salmon-in-net-catches" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="plot-1-wild-and-farmed-salmon-in-net-catches"><span class="header-section-number">4.1</span> Plot 1: Wild and Farmed Salmon in Net Catches</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>net_year <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, wild_salmon_number, farmed_salmon_number) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(wild_salmon_number, farmed_salmon_number),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"origin"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"catch"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">origin =</span> <span class="fu">recode</span>(</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>      origin,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">wild_salmon_number =</span> <span class="st">"Wild salmon"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">farmed_salmon_number =</span> <span class="st">"Farmed salmon"</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> catch, <span class="at">color =</span> origin)) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> scales<span class="sc">::</span><span class="fu">pseudo_log_trans</span>(<span class="at">base =</span> <span class="dv">10</span>, <span class="at">sigma =</span> <span class="dv">10</span>),</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">10000</span>, <span class="dv">100000</span>),</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">minor_breaks =</span> <span class="cn">NULL</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Wild and farmed salmon in net catches from 1994 onward"</span>,</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of salmon (pseudo-log scale)"</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Origin"</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation: this plot starts in 1994 because farmed salmon first appear in the <code>csv</code> dataset in that year. Wild and farmed salmon are shown on the same graph using a pseudo-log scale, which keeps zero values visible while giving more space to the lower range where farmed salmon appear. Farmed salmon are still much rarer than wild salmon, with the highest recorded value in 1994, when 1,069 farmed salmon were recorded.</p>
+</section>
+<section id="plot-2-catch-and-release-percentage-in-rod-fisheries" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="plot-2-catch-and-release-percentage-in-rod-fisheries"><span class="header-section-number">4.2</span> Plot 2: Catch-and-Release Percentage in Rod Fisheries</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>catch_release_rod <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> percent_released, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.4</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Percentage of rod catch released after 1994"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Released catch (%)"</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Species"</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation: the percentage released increased for both species. For salmon, the release percentage rose from 8% in 1994 to 70% in 2010 and 98% in 2024. For sea trout, it rose from 8% in 1994 to 71% in 2010 and 94% in 2024. This supports the conclusion that fishing practice has shifted from retained catch toward catch-and-release.</p>
+</section>
+<section id="plot-3-retained-versus-released-catch-by-method-in-2024" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="plot-3-retained-versus-released-catch-by-method-in-2024"><span class="header-section-number">4.3</span> Plot 3: Retained versus Released Catch by Method in 2024</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>catch_2024 <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, Method, retained_catch, released_catch) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(retained_catch, released_catch),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"catch_type"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"catch"</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">catch_type =</span> <span class="fu">recode</span>(</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      catch_type,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">retained_catch =</span> <span class="st">"Retained"</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">released_catch =</span> <span class="st">"Released"</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Method <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Rod"</span>, <span class="st">"Net and Coble"</span>, <span class="st">"Fixed Engine"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> catch, <span class="at">fill =</span> catch_type)) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(catch)),</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Method, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>))</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"2024: retained and released catch by fishing method"</span>,</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of fish"</span>,</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Catch type"</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation: in 2024, catch-and-release was especially common in rod fisheries. The plot is split into separate panels for <code>Rod</code>, <code>Net and Coble</code>, and <code>Fixed Engine</code> so that the much smaller non-rod values remain visible. Net and coble and fixed engine fisheries had much smaller absolute catches, although some salmon methods still had high release percentages.</p>
+</section>
+<section id="plot-4-the-drop-in-net-catch-around-1970" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="plot-4-the-drop-in-net-catch-around-1970"><span class="header-section-number">4.4</span> Plot 4: The Drop in Net Catch Around 1970</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>net_year <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1965</span>, Year <span class="sc">&lt;=</span> <span class="dv">1972</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> all_fish_number)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Net catch around 1970"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total number of fish in the CSV dataset"</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation: in the <code>csv</code> dataset, total net catch decreased from 626,897 fish in 1969 to 478,073 fish in 1970, a drop of approximately 23.7%. The decrease is strongest for wild salmon, where the recorded catch fell from 510,189 to 346,207 fish. Sea trout and finnock do not show the same 1969-1970 drop in this <code>csv</code> subset, so I do not interpret this result as a uniform biological decline across all species.</p>
+<section id="possible-reasons-for-the-drop-around-1970" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="possible-reasons-for-the-drop-around-1970"><span class="header-section-number">4.4.1</span> Possible Reasons for the Drop Around 1970</h3>
+<p>This section is interpretive and is therefore separated from the direct calculations. The datasets do not prove the cause of the drop, but they suggest several possible directions for explanation:</p>
+<ul>
+<li>Fishing effort in the <code>csv</code> dataset decreased from 13,149 in 1969 to 11,893 in 1970. Part of the drop may therefore be related to reduced fishing intensity, although the decrease in wild salmon catch is larger than the change in effort alone.</li>
+<li>The official ODS tables for salmon net fisheries also show a decrease in fixed engine and net and coble catches between 1969 and 1970, while rod-caught salmon did not decrease in the same year. This suggests that the drop is especially visible in net fisheries.</li>
+<li>An external source from Queen’s University Belfast describes south-west Scotland as having been strongly affected by freshwater acidification in the later twentieth century. It states that by the 1970s, brown trout populations had disappeared or declined sharply in some lakes. This is a plausible environmental context for pressure on salmonid populations, but it is not direct proof of the national salmon-catch pattern in this dataset.</li>
+</ul>
+</section>
+</section>
+<section id="plot-5-released-catch-can-fall-in-absolute-terms-when-total-catch-falls" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="plot-5-released-catch-can-fall-in-absolute-terms-when-total-catch-falls"><span class="header-section-number">4.5</span> Plot 5: Released Catch Can Fall in Absolute Terms When Total Catch Falls</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>catch_release_rod <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, species, total_catch, released_catch, retained_catch) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(total_catch, released_catch, retained_catch),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"measure"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"catch"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">recode</span>(</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      measure,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">total_catch =</span> <span class="st">"Total"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">released_catch =</span> <span class="st">"Released"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">retained_catch =</span> <span class="st">"Retained"</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> catch, <span class="at">color =</span> measure)) <span class="sc">+</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Total, released, and retained rod catch from 1994 onward"</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of fish"</span>,</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Measure"</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Project_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Explanation: the percentage of fish released has increased, but the absolute number of released fish still depends on the size of the total catch. This is important: a high catch-and-release percentage does not necessarily mean that the population is larger. It may also mean that almost all of a smaller total catch is being released.</p>
+</section>
+</section>
+<section id="interpretation-conclusion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Interpretation / Conclusion</h1>
+<p>The analysis supports three main conclusions.</p>
+<p>First, wild salmon strongly dominate the data. In the Kaggle <code>csv</code> net-catch dataset for 1952-2022, there are 13,450,631 wild salmon and 4,795 farmed salmon. Farmed salmon therefore account for approximately 0.036% of recorded salmon in this source. The official ODS source for 2024 similarly records only 13 farmed salmon, which is a very small number compared with the 47,913 total salmon catch recorded across all methods in the same ODS source.</p>
+<p>Second, the data clearly show a shift toward catch-and-release. For rod-caught wild salmon, the release percentage increased from 8% in 1994 to 98% in 2024. For sea trout, it increased from 8% in 1994 to 94% in 2024. This means that retained catch has decreased relative to catch-and-release.</p>
+<p>Third, the drop around 1970 in the <code>csv</code> dataset is real in net-catch records, especially for wild salmon, but there is not enough evidence to assign it to a single cause. Both catch and fishing effort decreased at the same time. The Queen’s University Belfast source on freshwater acidification in south-west Scotland provides credible environmental context for pressure on salmonid populations in the 1970s, but I use it only as a possible explanation, not as proof of the national pattern in these data.</p>
+<p>The main limitation of this project is that the two datasets do not have the same structure. The <code>csv</code> dataset provides detailed monthly net-catch records by district and region up to 2022. The <code>ods</code> dataset adds official 2024 tables and catch-and-release information. The two sources are therefore most useful together: the first gives the long-term view of net catches, while the second explains the modern retained-versus-released pattern.</p>
+</section>
+<section id="literature-references" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Literature / References</h1>
+<ul>
+<li>Kaggle dataset: <a href="https://www.kaggle.com/datasets/mikhail1681/salmon-catch-statistics-for-scotland-19522022" class="uri">https://www.kaggle.com/datasets/mikhail1681/salmon-catch-statistics-for-scotland-19522022</a></li>
+<li>Scottish Government, <code>Scottish salmon and sea trout fishery statistics 2024</code>, supporting documents: <a href="https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/documents/" class="uri">https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/documents/</a></li>
+<li>Scottish Government, <code>Scottish salmon and sea trout fishery statistics 2024</code>, publication summary: <a href="https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/" class="uri">https://www.gov.scot/publications/scottish-salmon-sea-trout-fishery-statistics-2024/</a></li>
+<li>Marine Scotland explanatory notes supplied with the salmon and sea trout fishery statistics dataset.</li>
+<li>Queen’s University Belfast, <code>Tracking the genes of brown-trout populations</code>: <a href="https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html" class="uri">https://www.qub.ac.uk/Research/GRI/TheInstituteforGlobalFoodSecurity/institute-for-global-security-news/NewsArchive2019/BrownTroutresearch.html</a></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
