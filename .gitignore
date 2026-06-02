@@ -8,4 +8,6 @@ Project/datasets/
 
 # Quarto generated support files
 *_files/
+!Project/Project_files/
+!Project/Project_files/**
 *.knit.md

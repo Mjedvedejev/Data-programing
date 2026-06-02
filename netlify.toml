@@ -1,0 +1,4 @@
+[build]
+  base = "."
+  command = "echo Static Quarto output is already rendered"
+  publish = "Project"
