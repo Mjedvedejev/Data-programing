@@ -3,8 +3,8 @@
 *.ods
 *.zip
 
-# Extracted dataset directories
-Project/SalmonandSeaTroutNets1952-2022.csv/
+# Local dataset directories
+Project/datasets/
 
 # Quarto generated support files
 *_files/

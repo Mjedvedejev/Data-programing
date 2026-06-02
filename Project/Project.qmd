@@ -36,8 +36,8 @@ An important limitation is that I do not infer causality where the data do not d
 library(tidyverse)
 library(readODS)
 
-csv_path <- "SalmonandSeaTroutNets1952-2022.csv/SalmonandSeaTroutNets1952-2022.csv"
-ods_path <- "2024-scottish-salmon-sea-trout-statistics-supplementary-tables.ods"
+csv_path <- "datasets/SalmonandSeaTroutNets1952-2022.csv"
+ods_path <- "datasets/2024-scottish-salmon-sea-trout-statistics-supplementary-tables.ods"
 
 net_raw <- read_csv(csv_path, show_col_types = FALSE)
 
